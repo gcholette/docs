@@ -17,9 +17,7 @@ function HomepageHeader() {
 export default function Home() {
   // window.location.href = "/docs/category/ctf-cheatsheets"
   return (
-    <Layout
-      title={`gcholette docs`}
-      description="Personal reference">
+    <Layout description="Personal reference">
       <HomepageHeader />
       <div className={clsx(styles.container)}>
         <a href="/docs/category/ctf-cheatsheets" className={clsx(styles.card)}>CTF Cheatsheets</a>
