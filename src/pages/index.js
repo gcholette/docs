@@ -8,20 +8,23 @@ function HomepageHeader() {
   return (
     <header className={clsx(styles.heroBanner)}>
       <div className="container">
-        <h1>See the <a href="/docs/category/ctf-cheatsheets">
-          docs
-        </a></h1>
+        <h1>Documentation</h1>
       </div>
     </header>
   );
 }
 
 export default function Home() {
+  // window.location.href = "/docs/category/ctf-cheatsheets"
   return (
     <Layout
       title={`gcholette docs`}
       description="Personal reference">
       <HomepageHeader />
+      <div className={clsx(styles.container)}>
+        <a href="/docs/category/ctf-cheatsheets" className={clsx(styles.card)}>CTF Cheatsheets</a>
+        <a href="/docs/category/programming" className={clsx(styles.card)}>Programming</a>
+      </div>
     </Layout>
   );
 }

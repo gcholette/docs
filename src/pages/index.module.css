@@ -3,10 +3,61 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  background-image: url('/img/banner.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 3em;
+  font-family: monospace;
 }
 
 @media screen and (max-width: 996px) {
   .heroBanner {
     padding: 2rem;
   }
+}
+
+.card {
+  padding: 2em;
+  margin: 1em;
+  border-radius: 25px;
+  background: linear-gradient(45deg, #6d01f7, #992cad);
+  font-family: monospace;
+  font-size: 20px;
+  cursor: pointer;
+  user-select: none;
+  min-width: 265px;
+  text-align: center;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.card,
+.card:hover,
+.card:visited,
+.card:active,
+.card:link {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.card:hover {
+  background: linear-gradient(45deg, #4c06a8, #641e70);
+  transform: scale(1.05);
+}
+
+.card:active {
+  background: linear-gradient(45deg, #33076d, #35103b);
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
 }

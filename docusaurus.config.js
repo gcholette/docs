@@ -52,9 +52,6 @@ const config = {
           },
         ],
       },
-      footer: {
-        style: 'dark',
-      },
       prism: {
         theme: require('./src/codethemes/light'),
         darkTheme: require('./src/codethemes/dark'),

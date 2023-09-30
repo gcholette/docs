@@ -1,4 +1,8 @@
-# Binaries
+---
+title: Pwn Binaries
+---
+
+# Pwn Binaries
 
 ```
 file some-executable
