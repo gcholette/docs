@@ -1,5 +1,5 @@
 ---
-title: Privilege Escalation
+title: Privesc - Linux
 ---
 
 # Linux Privilege Escalation
