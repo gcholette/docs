@@ -19,7 +19,7 @@ module.exports = {
         {
             types: ["tag", "operator", "number"],
             style: {
-                color: "#64666b",
+                color: "#747780",
             },
         },
         {

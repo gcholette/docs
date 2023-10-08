@@ -1,5 +1,5 @@
 ---
-title: Privesc - Windows
+title: Windows
 ---
 
 # Windows Privilege Escalation

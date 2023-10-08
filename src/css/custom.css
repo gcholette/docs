@@ -1,11 +1,8 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
-
-/* You can override the default Infima variables here. */
 :root {
+  --ifm-code-font-size: 95%;
+}
+
+[data-theme='light'] {
   --ifm-color-primary: #592bc7;
   --ifm-color-primary-dark: var(--ifm-color-primary);
   --ifm-color-primary-darker: var(--ifm-color-primary);
@@ -16,23 +13,33 @@
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
+  --ifm-background-color: #e4e4e9 !important;
+  --ifm-navbar-background-color: #e4e4e9 !important;
 
+  --ifm-code-background: var(--ifm-background-color) !important;
+  --ifm-card-background-color: var(--ifm-background-color) !important;
+  --ifm-color-emphasis-300: var(--ifm-color-gray-500) !important;
 }
 
-:root .footer {
-  background: #f2f5f7;
+[data-theme='light'] .navbar {
+  box-shadow: none !important;
+  border-bottom: 1px solid var(--ifm-color-emphasis-500);
 }
 
-:root ::selection {
+[data-theme='light'] ::selection {
   background-color: #935ee9;
   color: #ffffff;
 }
 
-:root .theme-code-block ::selection {
+[data-theme='light'] .theme-code-block ::selection {
   color: #000000;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='light'] .card {
+  box-shadow: none !important;
+  border: 1px solid var(--ifm-color-emphasis-500);
+}
+
 [data-theme='dark'] {
   --ifm-color-primary: #846cee;
   --ifm-color-primary-dark: var(--ifm-color-primary);
@@ -43,15 +50,17 @@
   --ifm-color-primary-lightest: var(--ifm-color-primary);
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 
-  --ifm-background-color: #101013 !important;
-  --ifm-background-surface-color: #17181b !important;
-  --ifm-footer-background-color: #121318 !important;
-  --ifm-hover-overlay: rgba(33, 31, 46, 0.685) !important;
+  --ifm-background-color: #17171f !important;
+  --ifm-navbar-background-color: var(--ifm-background-color) !important;
 
+  --ifm-card-background-color: var(--ifm-background-color) !important;
+  --ifm-background-surface-color: #17181b !important;
+  --ifm-hover-overlay: rgba(33, 31, 46, 0.685) !important;
 }
 
-[data-theme='dark'] .footer {
-  background: var(--ifm-background-surface-color);
+[data-theme='dark'] .navbar {
+  box-shadow: none !important;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
 }
 
 [data-theme='dark'] ::selection {

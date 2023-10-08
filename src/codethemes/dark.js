@@ -1,13 +1,13 @@
 module.exports = {
     plain: {
-        backgroundColor: "#1b1b1f",
-        color: "#a5a7b0",
+        backgroundColor: "#26262b",
+        color: "#d0d2db",
     },
     styles: [
         {
             types: ["comment", "prolog", "doctype", "cdata", "punctuation"],
             style: {
-                color: "#44464a",
+                color: "#61646b",
             },
         },
         {
@@ -19,7 +19,7 @@ module.exports = {
         {
             types: ["tag", "operator", "number"],
             style: {
-                color: "#64666b",
+                color: "#7a7d85",
             },
         },
         {
@@ -31,7 +31,7 @@ module.exports = {
         {
             types: ["tag-id", "selector", "atrule-id"],
             style: {
-                color: "#56585c",
+                color: "#757982",
             },
         },
         {
@@ -58,7 +58,7 @@ module.exports = {
                 "variable",
             ],
             style: {
-                color: "#909399",
+                color: "#9fa3ab",
             },
         },
         {
