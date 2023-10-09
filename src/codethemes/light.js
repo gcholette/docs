@@ -7,7 +7,7 @@ module.exports = {
         {
             types: ["comment", "prolog", "doctype", "cdata", "punctuation"],
             style: {
-                color: "#61656b",
+                color: "#767b82",
             },
         },
         {
@@ -19,7 +19,7 @@ module.exports = {
         {
             types: ["tag", "operator", "number"],
             style: {
-                color: "#747780",
+                color: "#a1a4ad",
             },
         },
         {

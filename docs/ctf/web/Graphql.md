@@ -1,5 +1,5 @@
 # Graphql
-## References
+## Resources
 - [Hacktricks Graphql](https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/graphql#graphql)
 - [jondow.eu/practical-graphql-attack-vectors](https://jondow.eu/practical-graphql-attack-vectors/)
 - [graphql-common-vulnerabilities-how-to-exploit-them](https://medium.com/@the.bilal.rizwan/graphql-common-vulnerabilities-how-to-exploit-them-464f9fdce696)
