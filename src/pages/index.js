@@ -8,7 +8,7 @@ function HomepageHeader() {
   return (
     <header className={clsx(styles.heroBanner)}>
       <div className="container">
-        <h1>Documentation</h1>
+        <h1>&nbsp;</h1>
       </div>
     </header>
   );
