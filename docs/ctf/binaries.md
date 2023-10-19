@@ -22,6 +22,7 @@ gdb some-executable
 (gdb) break *0x000055555555539c
 (gdb) run
 (gdb) stepi
+(gdb) next
 (gdb) continue
 ```
 ```
@@ -30,6 +31,8 @@ gdb some-executable
 (gdb) info file                 # look for entry point
 (gdb) break *0x555555555080
 (gdb) run
+(gdb) command 1
+> end
 (gdb) x/1000i $rip              # list 1k lines from instruction pointer
 (gdb) x/1000i 0x5555555558dd    # list 1k lines from address
 ```
@@ -37,6 +40,9 @@ gdb some-executable
 (gdb) x/20wx $esp               # view 20 words starting from esp
 (gdb) delete 1                  # delete breakpoint
 (gdb) delete                    # delete all breakpoints
+```
+```bash
+(gdb) searchmem 0xb44e746230f1ef00
 ```
 
 ### Assembly stuff
