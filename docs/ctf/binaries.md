@@ -16,6 +16,7 @@ rtrace ./some-executable
 
 ```
 gdb some-executable
+(gdb) checksec
 (gdb) info break
 (gdb) info registers
 (gdb) disassemble <fn-name>
