@@ -67,7 +67,24 @@ RIP: Instruction Pointer, next instruction to be executed.
 ``` 
 
 ### Pwntools
+#### Starter
+```python
+from pwn import *
 
+context.log_level = 'DEBUG'
+context(os='linux', arch='amd64')
+
+p = process('./vuln')
+# p = remote('x.x.x.x', 1234)
+
+payload = p64(0x13371337)
+
+p.sendlineafter(b'> ', b"A")
+p.sendlineafter(b'> ', payload)
+p.interactive()
+```
+
+#### Examples
 ```python
 from pwn import *
 
