@@ -11,7 +11,7 @@ strace ./some-executable
 rtrace ./some-executable
 ```
 
-### GDB
+## GDB
 - [gdb-peda](https://github.com/longld/peda)
 
 ```
@@ -46,8 +46,8 @@ gdb some-executable
 (gdb) searchmem 0xb44e746230f1ef00
 ```
 
-### Assembly stuff
-#### Registers
+## Assembly stuff
+### Registers
 ```
 Registers with an "E" prefix, like EAX, represent the lower 32 bits of the corresponding register in x86 (32-bit) architecture.
 Registers with an "R" prefix, like RAX, represent the 64-bit version in x86_64 architecture.
@@ -64,10 +64,16 @@ RDI: Destination Index, often used as a pointer to the destination in stream ope
 RSP: Stack Pointer, top of the stack.
 RBP: Base Pointer, base of the stack frame.
 RIP: Instruction Pointer, next instruction to be executed.
-``` 
+```
+### Passing arguments on the stack
+#### 64 bit
+```
+In the C calling conversion
+RDI, RSI, RDX, RCX, R8 and R9 registers and anything additional will be placed in to the stack.
+```
 
-### Pwntools
-#### Starter
+## Pwntools
+### Starter
 ```python
 from pwn import *
 
@@ -84,7 +90,7 @@ p.sendlineafter(b'> ', payload)
 p.interactive()
 ```
 
-#### Examples
+### Examples
 ```python
 from pwn import *
 
@@ -175,8 +181,8 @@ pattern = cyclic(100) # 100 bytes long
 offset = cyclic_find('vaaa')
 ```
 
-#### Without pwntools
-##### Basic python socket
+### Without pwntools
+#### Basic python socket
 ```python
 import socket
 import time
