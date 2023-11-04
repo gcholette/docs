@@ -25,6 +25,8 @@ gdb some-executable
 (gdb) stepi
 (gdb) next
 (gdb) continue
+(gdb) searchmem 0xb44e746230f1ef00
+(gdb) print/d 0x777f - 0x776a
 ```
 ```
 # stripped workflow
@@ -43,8 +45,9 @@ gdb some-executable
 (gdb) delete                    # delete all breakpoints
 ```
 ```bash
-(gdb) searchmem 0xb44e746230f1ef00
+x/200wx $rsp-100
 ```
+
 
 ## Assembly stuff
 ### Registers
