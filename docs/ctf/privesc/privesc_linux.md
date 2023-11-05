@@ -14,6 +14,10 @@ title: Linux
 - [hacktricks (linux)](https://book.hacktricks.xyz/linux-hardening/privilege-escalation#writable-path-abuses)
 - [hacktricks (windows)](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation)
 
+## Things to look for
+- Commands that contain credentials like `mysql -ptest123` get leaked in `ps`, use `pspy`
+- Search for hashes/credentials, often in backups or configs
+
 ## Operations
 ```bash
 sudo -l
