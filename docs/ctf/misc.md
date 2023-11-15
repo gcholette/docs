@@ -1,5 +1,27 @@
 # Misc
 
+## Dotnet
+
+```bash
+dotnet new console -n Honk
+dotnet build
+dotnet run
+dotnet publish -c Release
+dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -p:PublishTrimmed=true
+```
+
+```xml
+<!-- for dll -->
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>Honk</AssemblyName>
+    <OutputType>Library</OutputType>
+    <!-- netstandard2.0 for compatibility -->
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+</Project>
+```
+
 ## PDF stuff
 
 ### Create empty pdf
