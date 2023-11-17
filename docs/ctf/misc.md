@@ -22,6 +22,14 @@ dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true 
 </Project>
 ```
 
+## Responder
+HTTP/SMB/MSSQL/FTP/LDAP rogue authentication server
+- [responder](https://github.com/lgandx/Responder)
+- [responder kali](https://www.kali.org/tools/responder/)
+```
+responder -I tun0 -wA
+```
+
 ## PDF stuff
 
 ### Create empty pdf
