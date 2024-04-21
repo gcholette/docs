@@ -18,6 +18,11 @@ ffuf -u http://<url>/FUZZ -w /usr/share/wordlists/dirb/common.txt
 ffuf -u http://<url> -w /usr/share/dnsrecon/subdomains-top1mil.txt -H "Host: FUZZ.<domain>.com" -fc 301
 ```
 
+## CeWL
+```shell
+cewl http://<url> -w wordlist-to-save.txt
+```
+
 ## gobuster
 ```shell
 gobuster dir -u http://<url> -w /usr/share/wordlists/dirb/common.txt
