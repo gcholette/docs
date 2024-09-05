@@ -7,3 +7,13 @@
 - [ghostlulz.com/api-hacking-graphql](http://ghostlulz.com/api-hacking-graphql/)
 - [PayloadAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/GraphQL%20Injection/README.md)
 - [Portswigger graphql](https://portswigger.net/web-security/graphql)
+
+## Tools
+- [Clairvoyance](https://github.com/nikitastupin/clairvoyance)
+- [EyeWitness](https://github.com/RedSiege/EyeWitness)
+- [CrackQL](https://github.com/nicholasaleks/CrackQL)
+- [Graphw00f](https://github.com/dolevf/graphw00f)
+- [BatchQL](https://github.com/assetnote/batchql)
+- [graphql-path-enum](https://gitlab.com/dee-see/graphql-path-enum)
+- [GraphQL Cop](https://github.com/dolevf/graphql-cop)
+- [InQL Burp extension](https://github.com/doyensec/inql)
