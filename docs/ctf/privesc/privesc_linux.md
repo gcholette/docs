@@ -14,16 +14,55 @@ title: Linux
 - [hacktricks (linux)](https://book.hacktricks.xyz/linux-hardening/privilege-escalation#writable-path-abuses)
 - [hacktricks (windows)](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation)
 
+## Enum
+### Basics
+
+```bash
+whoami                                         # Current logged user
+id                                             # Current user groups
+hostname                                       # Machine's domain name
+cat /etc/os-release                            # OS version
+uname -a                                       # Kernel version
+cat /proc/version                              # Kernel version
+lscpu                                          # Additional host info
+ifconfig                                       # Network interfaces
+ip addr                                        # Network interfaces
+netstat -rn                                    # Routing table
+route                                          # Routing table
+arp -a                                         # Arp table (other hosts)
+lkblk                                          # Drives and shares
+cat /etc/fstab                                 # Mounts
+df -h                                          # Mounted file systems
+cat /etc/fstab | grep -v "#" | column -t       # Unmounted file systems
+
+sudo -l                                        # What can we run as root?
+echo $PATH                                     # Is path misconfigured?
+env                                            # Environment variables
+cat /etc/shells                                # Available shells
+cat /etc/passwd                                # Existing users
+cat /etc/group                                 # Existing groups
+getent group sudo                              # Which users are in the sudo group?
+```
+
+### Looking for writable directories
+
+```bash
+find / -path /proc -prune -o -type d -perm -o+w 2>/dev/null
+```
+
+### Looking for writable files
+
+```bash
+find / -path /proc -prune -o -type f -perm -o+w 2>/dev/null
+```
+
 ## Things to look for
 - Commands that contain credentials like `mysql -ptest123` get leaked in `ps`, use `pspy`
 - Search for hashes/credentials, often in backups or configs
 
-## Operations
-```bash
-sudo -l
-```
+## Misc notes
 
-## .so loading
+### .so loading
 ```c
 #include <unistd.h>
 #include <sys/types.h>
@@ -45,7 +84,6 @@ gcc -fPIC -shared -o extension.so extension.c -nostartfiles
 ```bash
 bash -p
 ```
-
 
 ### ssh private key
 
