@@ -17,41 +17,121 @@ title: Linux
 ## Enum
 ### Basics
 
+#### Current logged user
 ```bash
-whoami                                         # Current logged user
-id                                             # Current user groups
-hostname                                       # Machine's domain name
-cat /etc/os-release                            # OS version
-uname -a                                       # Kernel version
-cat /proc/version                              # Kernel version
-lscpu                                          # Additional host info
-ifconfig                                       # Network interfaces
-ip addr                                        # Network interfaces
-netstat -rn                                    # Routing table
-route                                          # Routing table
-arp -a                                         # Arp table (other hosts)
-lkblk                                          # Drives and shares
-cat /etc/fstab                                 # Mounts
-df -h                                          # Mounted file systems
-cat /etc/fstab | grep -v "#" | column -t       # Unmounted file systems
-
-sudo -l                                        # What can we run as root?
-echo $PATH                                     # Is path misconfigured?
-env                                            # Environment variables
-cat /etc/shells                                # Available shells
-cat /etc/passwd                                # Existing users
-cat /etc/group                                 # Existing groups
-getent group sudo                              # Which users are in the sudo group?
+whoami
 ```
 
-### Looking for writable directories
+#### Current user groups
+```bash
+id
+```
 
+#### Machine's domain name                                 
+```bash
+hostname
+```
+
+#### OS version
+```bash
+cat /etc/os-release
+```
+
+#### Kernel version
+```bash
+uname -a
+```
+```bash
+cat /proc/version
+```
+
+#### Additional host info
+```bash
+lscpu
+```
+
+#### Network interfaces
+```bash
+ifconfig
+```
+```bash
+ip addr
+```
+
+#### Routing table
+```bash
+netstat -rn
+```
+```bash
+route
+```
+
+#### Arp table (other hosts)
+```bash
+arp -a
+```
+
+#### Drives and shares
+```bash
+lkblk
+```
+
+#### Mounts
+```bash
+cat /etc/fstab
+```
+
+#### Mounted file systems
+```bash
+df -h
+```
+
+#### Unmounted file systems
+```bash
+cat /etc/fstab | grep -v "#" | column -t
+```
+
+#### What can we run as root?
+```bash
+sudo -l
+```
+
+#### Is path misconfigured?
+```bash
+echo $PATH
+```
+
+#### Environment variables
+```bash
+env
+```
+
+#### Available shells
+```bash
+cat /etc/shells
+```
+
+#### Existing users
+```bash
+cat /etc/passwd
+```
+
+#### Existing groups
+```bash
+cat /etc/group
+```
+
+#### Which users are in the sudo group?
+```bash
+getent group sudo
+```
+
+#### Writable directories
 ```bash
 find / -path /proc -prune -o -type d -perm -o+w 2>/dev/null
 ```
 
-### Looking for writable files
-
+#### Writable files
 ```bash
 find / -path /proc -prune -o -type f -perm -o+w 2>/dev/null
 ```
