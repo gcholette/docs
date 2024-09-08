@@ -43,6 +43,11 @@ uname -a
 cat /proc/version
 ```
 
+### Sudo version
+```bash
+sudo -V
+```
+
 ### Additional host info
 ```bash
 lscpu
@@ -62,6 +67,11 @@ netstat -rn
 ```
 ```bash
 route
+```
+
+### Hostfile
+```bash
+cat /etc/hosts
 ```
 
 ### Arp table (other hosts)
@@ -124,9 +134,46 @@ cat /etc/group
 getent group sudo
 ```
 
-### Find all writable directories
+### Logged users
 ```bash
-find / -path /proc -prune -o -type d -perm -o+w 2>/dev/null
+w
+```
+
+### Last user logins
+```bash
+lastlog
+```
+
+### Check bash history
+```bash
+history
+```
+
+### Cron
+```bash
+crontab -e
+```
+```bash
+ls -la /etc/cron.daily/
+```
+### Root processes
+```bash
+ps aux | grep root
+```
+
+### Find .sh files
+```bash
+find / -type f -name "*.sh" 2>/dev/null | grep -v "src\|snap\|share"
+```
+
+### Find .bash_history files
+```bash
+find / -type f \( -name *_hist -o -name *_history \) -exec ls -l {} \; 2>/dev/null
+```
+
+### Find configuration files
+```bash
+find / -type f \( -name *.conf -o -name *.config \) -exec ls -l {} \; 2>/dev/null
 ```
 
 ### Find all writable files
@@ -139,14 +186,24 @@ find / -path /proc -prune -o -type f -perm -o+w 2>/dev/null
 find / -type f -name ".*" -exec ls -l {} \; 2>/dev/null | grep $USER
 ```
 
+### Find temporary files
+```bash
+ls -l /tmp /var/tmp /dev/shm
+```
+
+### Find all writable directories
+```bash
+find / -path /proc -prune -o -type d -perm -o+w 2>/dev/null
+```
+
 ### Find all hidden directories
 ```bash
 find / -type d -name ".*" -ls 2>/dev/null
 ```
 
-### Find temporary files
+### Installed packages
 ```bash
-ls -l /tmp /var/tmp /dev/shm
+apt list --installed | tr "/" " " | cut -d" " -f1,3 | sed 's/[0-9]://g' | tee -a installed_pkgs.list
 ```
 
 ## Things to look for
