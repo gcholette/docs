@@ -124,14 +124,29 @@ cat /etc/group
 getent group sudo
 ```
 
-### Writable directories
+### Find all writable directories
 ```bash
 find / -path /proc -prune -o -type d -perm -o+w 2>/dev/null
 ```
 
-### Writable files
+### Find all writable files
 ```bash
 find / -path /proc -prune -o -type f -perm -o+w 2>/dev/null
+```
+
+### Find all hidden files for user
+```bash
+find / -type f -name ".*" -exec ls -l {} \; 2>/dev/null | grep $USER
+```
+
+### Find all hidden directories
+```bash
+find / -type d -name ".*" -ls 2>/dev/null
+```
+
+### Find temporary files
+```bash
+ls -l /tmp /var/tmp /dev/shm
 ```
 
 ## Things to look for
