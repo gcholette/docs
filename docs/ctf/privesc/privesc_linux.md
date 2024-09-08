@@ -14,30 +14,28 @@ title: Linux
 - [hacktricks (linux)](https://book.hacktricks.xyz/linux-hardening/privilege-escalation#writable-path-abuses)
 - [hacktricks (windows)](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation)
 
-## Enum
-### Basics
-
-#### Current logged user
+## Enum Basics
+### Current logged user
 ```bash
 whoami
 ```
 
-#### Current user groups
+### Current user groups
 ```bash
 id
 ```
 
-#### Machine's domain name                                 
+### Machine's domain name                                 
 ```bash
 hostname
 ```
 
-#### OS version
+### OS version
 ```bash
 cat /etc/os-release
 ```
 
-#### Kernel version
+### Kernel version
 ```bash
 uname -a
 ```
@@ -45,12 +43,12 @@ uname -a
 cat /proc/version
 ```
 
-#### Additional host info
+### Additional host info
 ```bash
 lscpu
 ```
 
-#### Network interfaces
+### Network interfaces
 ```bash
 ifconfig
 ```
@@ -58,7 +56,7 @@ ifconfig
 ip addr
 ```
 
-#### Routing table
+### Routing table
 ```bash
 netstat -rn
 ```
@@ -66,72 +64,72 @@ netstat -rn
 route
 ```
 
-#### Arp table (other hosts)
+### Arp table (other hosts)
 ```bash
 arp -a
 ```
 
-#### Drives and shares
+### Drives and shares
 ```bash
 lkblk
 ```
 
-#### Mounts
+### Mounts
 ```bash
 cat /etc/fstab
 ```
 
-#### Mounted file systems
+### Mounted file systems
 ```bash
 df -h
 ```
 
-#### Unmounted file systems
+### Unmounted file systems
 ```bash
 cat /etc/fstab | grep -v "#" | column -t
 ```
 
-#### What can we run as root?
+### What can we run as root?
 ```bash
 sudo -l
 ```
 
-#### Is path misconfigured?
+### Is path misconfigured?
 ```bash
 echo $PATH
 ```
 
-#### Environment variables
+### Environment variables
 ```bash
 env
 ```
 
-#### Available shells
+### Available shells
 ```bash
 cat /etc/shells
 ```
 
-#### Existing users
+### Existing users
 ```bash
 cat /etc/passwd
 ```
 
-#### Existing groups
+### Existing groups
 ```bash
 cat /etc/group
 ```
 
-#### Which users are in the sudo group?
+### Which users are in the sudo group?
 ```bash
 getent group sudo
 ```
 
-#### Writable directories
+### Writable directories
 ```bash
 find / -path /proc -prune -o -type d -perm -o+w 2>/dev/null
 ```
 
-#### Writable files
+### Writable files
 ```bash
 find / -path /proc -prune -o -type f -perm -o+w 2>/dev/null
 ```
