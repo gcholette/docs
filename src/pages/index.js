@@ -15,14 +15,14 @@ function HomepageHeader() {
 }
 
 export default function Home() {
-  // window.location.href = "/docs/category/ctf-cheatsheets"
+  window.location.href = "/blog"
   return (
     <Layout description="Personal reference">
-      <HomepageHeader />
-      <div className={clsx(styles.container)}>
-        <a href="/docs/category/ctf-cheatsheets" className={clsx(styles.card)}>CTF Cheatsheets</a>
-        <a href="/docs/category/programming" className={clsx(styles.card)}>Programming</a>
-      </div>
+      {/* <HomepageHeader />
+       <div className={clsx(styles.container)}>
+         <a href="/docs/category/ctf-cheatsheets" className={clsx(styles.card)}>CTF Cheatsheets</a>
+         <a href="/docs/category/programming" className={clsx(styles.card)}>Programming</a>
+       </div> */}
     </Layout>
   );
 }

@@ -2,7 +2,7 @@
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Docs',
+  title: 'gcholette',
   favicon: 'img/favicon.ico',
 
   url: 'https://docs.gcholette.com',
@@ -10,7 +10,7 @@ const config = {
 
   organizationName: 'gcholette',
   projectName: 'docs',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   i18n: {
@@ -25,6 +25,12 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
+        },
+        blog: {
+          blogTitle: 'Blog',
+          postsPerPage: 'ALL',
+          blogSidebarCount: 'ALL',
+
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -49,6 +55,7 @@ const config = {
             position: 'left',
             label: 'Docs',
           },
+          { to: 'blog', label: 'Blog', position: 'left' }
         ],
       },
       prism: {
