@@ -1,0 +1,41 @@
+---
+title: UnitedCTF Shellcode Obfuscation 2 writeup
+description: Shellcode Obfuscation 2, by Atlantis11656
+slug: unitedctf-shellcode-obfuscation-2-writeup
+authors:
+  - gcholette
+tags: [unitedctf, ctf, writeup, binary-exploitation]
+hide_table_of_contents: false
+---
+
+Instructions
+1. For each level, you must execute code that will print the expected string on STDOUT.
+2. The only syscalls allowed are write on stdout and exit.
+3. The architecture is AMD64.
+4. The shellcode format must be in hexadecimal (\x00\x01\x02).
+5. The program that runs the shellcode was compiled with gcc -z execstack -fno-stack-protector -o [executable] [source.c]
+
+Level 2
+Restrictions sur le shellcode:
+Les bytes suivants sont interdits: \x05\x0f.
+
+Le shellcode qui sera exécuté doit faire au plus 75 bytes.
+
+Shellcode restrictions:
+The following bytes are forbidden: \x05\x0f/
+
+The shellcode that will be executed must be at most 75 bytes long.
+
+To print: Popcorn
+
+
+Level 3
+Restrictions sur le shellcode:
+Les bytes suivants sont interdits: \x00 à \x0f et \x31\x89\x00/
+
+Le shellcode qui sera exécuté doit faire au plus 75 bytes.
+
+Shellcode restrictions:
+The following bytes are forbidden: \x00 to \x0f et \x31\x89/
+
+The shellcode that will be executed must be at most 75 bytes long.
