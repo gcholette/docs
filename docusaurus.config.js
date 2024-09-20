@@ -30,7 +30,6 @@ const config = {
           blogTitle: 'Blog',
           postsPerPage: 'ALL',
           blogSidebarCount: 'ALL',
-
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -49,13 +48,14 @@ const config = {
           src: 'img/logo.png',
         },
         items: [
+          { label: 'Blog', position: 'left', to:"blog/" },
           {
             type: 'docSidebar',
             sidebarId: 'docsSidebar',
             position: 'left',
             label: 'Docs',
+            to: 'docs/'
           },
-          { to: 'blog', label: 'Blog', position: 'left' }
         ],
       },
       prism: {

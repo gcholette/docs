@@ -1,28 +1,6 @@
 import React from 'react';
-import clsx from 'clsx';
-import Layout from '@theme/Layout';
-
-import styles from './index.module.css';
-
-function HomepageHeader() {
-  return (
-    <header className={clsx(styles.heroBanner)}>
-      <div className="container">
-        <h1>&nbsp;</h1>
-      </div>
-    </header>
-  );
-}
+import {Redirect } from '@docusaurus/router';
 
 export default function Home() {
-  window.location.href = "/blog"
-  return (
-    <Layout description="Personal reference">
-      {/* <HomepageHeader />
-       <div className={clsx(styles.container)}>
-         <a href="/docs/category/ctf-cheatsheets" className={clsx(styles.card)}>CTF Cheatsheets</a>
-         <a href="/docs/category/programming" className={clsx(styles.card)}>Programming</a>
-       </div> */}
-    </Layout>
-  );
+  return <Redirect to='/blog' />
 }
