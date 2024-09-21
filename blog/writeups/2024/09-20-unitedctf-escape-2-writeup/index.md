@@ -1,10 +1,10 @@
 ---
-title: UnitedCTF Escape Room 2 writeup
+title: UnitedCTF 2024 Escape Room 2 writeup
 description: Escape Room 2, by KptCheeseWhiz
 slug: unitedctf-escape-room-2-writeup
 authors:
   - gcholette
-tags: [unitedctf, ctf, writeup, jail]
+tags: [unitedctf, unitedctf-2024, ctf, writeup, jail]
 hide_table_of_contents: false
 ---
 
@@ -18,6 +18,7 @@ There is also a free hint on the challenge
 
 We are also provided and ip and port to connect to with netcat.
 
+<!-- truncate -->
 
 Upon connecting to the socket, we are prompted with this.
 
@@ -42,10 +43,7 @@ async function challenge() {
 >
 ```
 
-
 The objective is to inject javascript in the eval statement to print the `flag.txt` file, while evading constraints.
-
-<!-- truncate -->
 
 Immediately we see this line which is our constraint, we can't use numbers or letters (case insensitive).
 
