@@ -45,6 +45,7 @@ const config = {
         logo: {
           alt: 'docs-logo',
           src: 'img/logo.png',
+          href: 'https://gcholette.com'
         },
         items: [
           { label: 'Blog', position: 'left', to: "blog/" },
