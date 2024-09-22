@@ -17,7 +17,6 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
-
   presets: [
     [
       'classic',
@@ -48,7 +47,7 @@ const config = {
           src: 'img/logo.png',
         },
         items: [
-          { label: 'Blog', position: 'left', to:"blog/" },
+          { label: 'Blog', position: 'left', to: "blog/" },
           {
             type: 'docSidebar',
             sidebarId: 'docsSidebar',
@@ -62,6 +61,11 @@ const config = {
         theme: require('./src/codethemes/light'),
         darkTheme: require('./src/codethemes/dark'),
       },
+      metadata: [
+        { name: 'keywords', content: 'gcholette, Gabriel Cholette-Rioux, gcr, Cholette-Rioux' },
+        { name: 'author', content: 'Gabriel Cholette-Rioux' },
+        { name: 'description', content: 'Gabriel Cholette-Rioux blog and notes' },
+      ],
     }),
 };
 
