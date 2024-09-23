@@ -64,7 +64,7 @@ const config = {
         additionalLanguages: ['powershell', 'bash', 'nasm'],
       },
       metadata: [
-        { name: 'keywords', content: 'gcholette, Gabriel Cholette-Rioux, gcr, Cholette-Rioux' },
+        { name: 'keywords', content: 'gcholette, Gabriel Cholette-Rioux, gcr, Cholette-Rioux, gcholette blog, blog, Gabriel Cholette-Rioux Blog' },
         { name: 'author', content: 'Gabriel Cholette-Rioux' },
         { name: 'description', content: 'Gabriel Cholette-Rioux blog and notes' },
       ],
