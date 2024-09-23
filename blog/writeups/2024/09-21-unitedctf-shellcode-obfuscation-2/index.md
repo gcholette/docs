@@ -29,7 +29,7 @@ While doing the challenge I couldn't manage to find a easy way to invoke syscall
 
 I already had a basic shellcode from the level 1 to start with:
 
-```assembly
+```nasm
 section .text
     global _start
 
@@ -51,7 +51,7 @@ _start:
 
 It writes a string to the stack and then calls the write syscall. For this challenge, the first part could be modified to the following to print `Popcorn`:
 
-```asm
+```nasm
 section .text
     global _start
 
@@ -77,7 +77,7 @@ Then i searched the web for different basic shellcode obfuscation techniques and
 
 So I did something similar to the links above, I wrote an assembly program that would xor a part of itself using the [jmp-call-pop technique](https://epi052.gitlab.io/notes-to-self/blog/2018-07-15-jmp-call-pop/). I opted to write the shellcode to the stack since while debugging an other solution that xored the shellcode bytes in place, the area was non-writeable and I tought it would also be on the challenge so I just stuck with writing it to the stack which was shown as executable in the challenge instructions.
 
-```asm
+```nasm
 section .text
 global _start
 
@@ -185,7 +185,7 @@ Now the shellcode can be xored it with `0xAA` using cyberchef, checking if the o
 
 The output can then added to the previous asm code
 
-```
+```nasm
 call_encoded_shellcode:
     call shellcode 
     encoded_shellcode:

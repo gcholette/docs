@@ -61,6 +61,7 @@ const config = {
       prism: {
         theme: require('./src/codethemes/light'),
         darkTheme: require('./src/codethemes/dark'),
+        additionalLanguages: ['powershell', 'bash', 'nasm'],
       },
       metadata: [
         { name: 'keywords', content: 'gcholette, Gabriel Cholette-Rioux, gcr, Cholette-Rioux' },
