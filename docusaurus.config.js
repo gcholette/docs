@@ -29,6 +29,7 @@ const config = {
           blogTitle: 'Blog',
           postsPerPage: 'ALL',
           blogSidebarCount: 'ALL',
+          blogDescription: 'Gabriel Cholette-Rioux\'s software dev and CTF blog.'
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -44,7 +45,7 @@ const config = {
       navbar: {
         logo: {
           alt: 'docs-logo',
-          src: 'img/logo.png',
+          src: 'img/G_round_medium.png',
           href: 'https://gcholette.com'
         },
         items: [
@@ -64,9 +65,8 @@ const config = {
         additionalLanguages: ['powershell', 'bash', 'nasm'],
       },
       metadata: [
-        { name: 'keywords', content: 'gcholette, Gabriel Cholette-Rioux, gcr, Cholette-Rioux, gcholette blog, blog, Gabriel Cholette-Rioux Blog' },
         { name: 'author', content: 'Gabriel Cholette-Rioux' },
-        { name: 'description', content: 'Gabriel Cholette-Rioux blog and notes' },
+        { name: 'og:description', content: 'Gabriel Cholette-Rioux\'s blog and notes' },
       ],
     }),
 };
