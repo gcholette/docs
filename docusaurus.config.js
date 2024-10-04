@@ -66,7 +66,7 @@ const config = {
       },
       metadata: [
         { name: 'author', content: 'Gabriel Cholette-Rioux' },
-        { name: 'og:description', content: 'Gabriel Cholette-Rioux\'s blog and notes' },
+        { name: 'description', property: "og:description", content: 'Gabriel Cholette-Rioux\'s blog and notes' },
       ],
     }),
 };
