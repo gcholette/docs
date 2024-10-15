@@ -4,7 +4,7 @@ description: Shellcode Obfuscation 2, by Atlantis11656
 slug: unitedctf-shellcode-obfuscation-2-writeup
 authors:
   - gcholette
-tags: [unitedctf, unitedctf-2024, ctf, writeup, binary-exploitation]
+tags: [unitedctf, unitedctf-2024, ctf, writeup, binary-exploitation, pwn]
 hide_table_of_contents: false
 ---
 
