@@ -18,3 +18,10 @@ proxychains curl x.x.x.x:xxxx
 ```
 
 Request should be intercepted or logged in the proxy tool (burp/zap/...)
+
+## Metasploit
+
+Just set the PROXIES setting if available
+```
+set PROXIES HTTP:127.0.0.1:8080
+```
