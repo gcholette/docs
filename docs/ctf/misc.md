@@ -1,5 +1,11 @@
 # Misc
 
+## Git Dumper
+```bash
+pip install git-dumper
+git-dumper https://<host>/.git ./out
+```
+
 ## Dotnet
 
 ```bash
