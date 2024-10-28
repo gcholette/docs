@@ -50,6 +50,14 @@ pip3 install wafw00f
 wafw00f <host>
 ```
 
+## Crawling
+
+```bash
+wget https://raw.githubusercontent.com/gcholette/docs/refs/heads/main/static/scripts/reconspider.py
+pip3 install scrapy
+python3 ./reconspider.py http://<url>
+```
+
 ## DNS
 ```bash
 nslookup
