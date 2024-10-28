@@ -71,3 +71,29 @@ dig axfr example.xyz @10.0.0.3
 dig axfr zonetransfer.me @nsztm1.digi.ninja
 ```
 
+## Google dorking
+
+| Operator           | Operator Description                                         | Example                                           |
+|--------------------|--------------------------------------------------------------|---------------------------------------------------|
+| *                  | Represents any character or word.                            | site:socialnetwork.com filetype:pdf user* manual  |
+| ..                 | Finds results within a specified numerical range.            | site:ecommerce.com "price" 100..500               |
+| " "                | Searches for exact phrases.                                  | "security policy"                                 |
+| -                  | Excludes terms from the search results.                      | site:abc.xyz -inurl:removeme                      |
+| AND                | Narrows results by requiring all terms to be present.        | site:example.com AND (inurl:admin OR inurl:login) |
+| OR                 | Broadens results by including pages with any of the terms.   | "linux" OR "ubuntu" OR "debian"                   |
+| NOT                | Excludes results containing the specified term.              | site:bank.com NOT inurl:login                     |
+| filetype:          | Searches for files of a particular type.                     | filetype:pdf                                      |
+| site:              | Limits results to a specific website or domain.              | site:abc.xyz                                      |
+| inurl:             | Finds pages with a specific term in the URL.                 | inurl:login                                       |
+| intitle:           | Finds pages with a specific term in the title.               | intitle:"something"                               |
+| intext: or inbody: | Searches for a term within the body text of pages.           | intext:"something"                                |
+| cache:             | Displays the cached version of a webpage (if available).     | cache:abc.xyz                                     |
+| link:              | Finds pages that link to a specific webpage.                 | link:abc.xyz                                      |
+| related:           | Finds websites related to a specific webpage.                | related:abc.xyz                                   |
+| info:              | Provides a summary of information about a webpage.           | info:abc.xyz                                      |
+| define:            | Provides definitions of a word or phrase.                    | define:phishing                                   |
+| numrange:          | Searches for numbers within a specific range.                | site:abc.xyz numrange:1000-2000                   |
+| allintext:         | Finds pages containing all specified words in the body text. | allintext:admin password reset                    |
+| allinurl:          | Finds pages containing all specified words in the URL.       | allinurl:admin panel                              |
+| allintitle:        | Finds pages containing all specified words in the title.     | allintitle:confidential report 2023               |
+
