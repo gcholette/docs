@@ -43,6 +43,9 @@ curl -I https://inlanefreight.com
 nikto -h https://www.<host> -Tuning b
 ```
 ```bash
+whatweb <url>
+```
+```bash
 pip3 install wafw00f
 wafw00f <host>
 ```
