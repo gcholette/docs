@@ -14,7 +14,7 @@ nmap -T4 -A -v -Pn -p- -oN scan_report.txt <host>
 ffuf -u http://<url>/FUZZ -w /usr/share/wordlists/dirb/common.txt
 ```
 ```bash
-gobuster dir -u http://<url> -w /usr/share/wordlists/dirb/common.txt
+gobuster dir -u http://<url> -w /usr/share/wordlists/dirb/common.txt -t 70
 ```
 ```shell
 dirb https://<url> /usr/share/wordlists/dirb/common.txt
@@ -25,10 +25,10 @@ dirb https://<url> /usr/share/wordlists/dirb/common.txt
 ffuf -u http://<url> -w /usr/share/dnsrecon/subdomains-top1mil.txt -H "Host: FUZZ.<domain>.com" -fc 301
 ```
 ```bash
-gobuster vhost -u http://<url> -w <wordlist> --append-domain
+gobuster vhost -u http://<url> -w <wordlist> --append-domain -t 70
 ```
 ```bash
-gobuster vhost -u https://<url> -w <wordlist> --append-domain -k
+gobuster vhost -u https://<url> -w <wordlist> --append-domain -k -t 70
 ```
 
 ## Dynamic wordlist building
