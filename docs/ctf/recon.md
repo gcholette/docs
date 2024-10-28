@@ -4,38 +4,41 @@ title: Recon
 
 # Recon
 
-## nmap
-```shell
-nmap -T4 -A -v -Pn -p- -oN scan_report.txt $target
+## Port scanning
+```bash
+nmap -T4 -A -v -Pn -p- -oN scan_report.txt <host>
 ```
 
-## ffuf
-```shell
+## Dirbusting
+```bash
 ffuf -u http://<url>/FUZZ -w /usr/share/wordlists/dirb/common.txt
 ```
-
+```bash
+gobuster dir -u http://<url> -w /usr/share/wordlists/dirb/common.txt
+```
 ```shell
+dirb https://<url> /usr/share/wordlists/dirb/common.txt
+```
+
+## Vhosts discovery
+```bash
 ffuf -u http://<url> -w /usr/share/dnsrecon/subdomains-top1mil.txt -H "Host: FUZZ.<domain>.com" -fc 301
 ```
-
-## CeWL
-```shell
-cewl http://<url> -w wordlist-to-save.txt
+```bash
+gobuster vhost -u http://<url> -w <wordlist> --append-domain
+```
+```bash
+gobuster vhost -u https://<url> -w <wordlist> --append-domain -k
 ```
 
-## gobuster
-```shell
-gobuster dir -u http://<url> -w /usr/share/wordlists/dirb/common.txt
+## Dynamic wordlist building
+```bash
+cewl http://<url> -w cewl-generated-wordlist.txt
 ```
 
 ## Nikto
-```shell
-nikto -host <ip>
-```
-
-## dirb
-```shell
-dirb $target /usr/share/wordlists/dirb/common.txt
+```bash
+nikto -host <host>
 ```
 
 ## DNS
@@ -61,9 +64,3 @@ dig axfr example.xyz @10.0.0.3
 dig axfr zonetransfer.me @nsztm1.digi.ninja
 ```
 
-## Git Dumper
-```
-pip install git-dumper
-git-dumper https://some-url/.git ./meow
-ls ./meow
-```
