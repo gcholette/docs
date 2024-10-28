@@ -1,15 +1,14 @@
 ---
-title: Recon
+title: Web Recon
 ---
 
-# Recon
-
+# Web Recon
 ## Port scanning
 ```bash
 nmap -T4 -A -v -Pn -p- -oN scan_report.txt <host>
 ```
-
-## Dirbusting
+## Fuzzing
+### Dirbusting
 ```bash
 ffuf -u http://<url>/FUZZ -w /usr/share/wordlists/dirb/common.txt
 ```
@@ -20,7 +19,7 @@ gobuster dir -u http://<url> -w /usr/share/wordlists/dirb/common.txt -t 70
 dirb https://<url> /usr/share/wordlists/dirb/common.txt
 ```
 
-## Vhosts discovery
+### Vhosts discovery
 ```bash
 ffuf -u http://<url> -w /usr/share/dnsrecon/subdomains-top1mil.txt -H "Host: FUZZ.<domain>.com" -fc 301
 ```
@@ -31,18 +30,24 @@ gobuster vhost -u http://<url> -w <wordlist> --append-domain -t 70
 gobuster vhost -u https://<url> -w <wordlist> --append-domain -k -t 70
 ```
 
-## Dynamic wordlist building
+### Dynamic wordlist building
 ```bash
 cewl http://<url> -w cewl-generated-wordlist.txt
 ```
 
-## Nikto
+## Fingerprinting
 ```bash
-nikto -host <host>
+curl -I https://inlanefreight.com
+```
+```bash
+nikto -h https://www.<host> -Tuning b
+```
+```bash
+pip3 install wafw00f
+wafw00f <host>
 ```
 
 ## DNS
-
 ```bash
 nslookup
 host $targetdomain
@@ -57,7 +62,6 @@ dig -x $targetip
 ```
 
 ### Zone transfer
-
 ```bash
 dig axfr <domain-to-transfer> @<source-dns-server>
 dig axfr example.xyz @10.0.0.3
