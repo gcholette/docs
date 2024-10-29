@@ -16,6 +16,9 @@ ffuf -u http://<url>/FUZZ -w /usr/share/wordlists/dirb/common.txt -ic
 ffuf -w /usr/share/seclists/Discovery/Web-Content/web-extensions.txt:EXT -u http://<url>/indexEXT
 ```
 ```bash
+ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-small.txt -u http://<url>/FUZZ -recursion -recursion-depth 1 -e .php -v -ic
+```
+```bash
 gobuster dir -u http://<url> -w /usr/share/wordlists/dirb/common.txt -t 70
 ```
 ```shell
