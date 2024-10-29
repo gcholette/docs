@@ -10,7 +10,10 @@ nmap -T4 -A -v -Pn -p- -oN scan_report.txt <host>
 ## Fuzzing
 ### Dirbusting
 ```bash
-ffuf -u http://<url>/FUZZ -w /usr/share/wordlists/dirb/common.txt
+ffuf -u http://<url>/FUZZ -w /usr/share/wordlists/dirb/common.txt -ic
+```
+```bash
+ffuf -w /usr/share/seclists/Discovery/Web-Content/web-extensions.txt:EXT -u http://<url>/indexEXT
 ```
 ```bash
 gobuster dir -u http://<url> -w /usr/share/wordlists/dirb/common.txt -t 70
