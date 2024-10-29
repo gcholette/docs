@@ -1,5 +1,10 @@
 # Misc
 
+## Basic Kali install
+```bash
+sudo apt install terminator ghidra seclists zaproxy gobuster
+```
+
 ## Git Dumper
 ```bash
 pip install git-dumper
