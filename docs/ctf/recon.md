@@ -61,6 +61,7 @@ python3 ./reconspider.py http://<url>
 ## DNS
 ```bash
 nslookup
+whois $targetdomain
 host $targetdomain
 dig $targetdomain
 dig $targetdomain A
