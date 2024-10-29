@@ -19,13 +19,21 @@ ffuf -w /usr/share/seclists/Discovery/Web-Content/web-extensions.txt:EXT -u http
 ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-small.txt -u http://<url>/FUZZ -recursion -recursion-depth 1 -e .php -v -ic
 ```
 ```bash
-ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt -u http://<url>?FUZZ=key -fs 123
-```
-```bash
 gobuster dir -u http://<url> -w /usr/share/wordlists/dirb/common.txt -t 70
 ```
 ```shell
 dirb https://<url> /usr/share/wordlists/dirb/common.txt
+```
+
+### Parameter fuzzing
+```bash
+ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt -u http://<url>?FUZZ=xxx -fs 123
+```
+```bash
+ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt -u http://<url> -X POST -d 'FUZZ=xxx' -H 'Content-Type: application/x-www-form-urlencoded' -fs 123
+```
+```bash
+ffuf -w <wordlist> -u <url> -X POST -d 'param=FUZZ' -H 'Content-Type: application/x-www-form-urlencoded' -fs 123
 ```
 
 ### Vhosts discovery
