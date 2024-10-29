@@ -19,6 +19,9 @@ ffuf -w /usr/share/seclists/Discovery/Web-Content/web-extensions.txt:EXT -u http
 ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-small.txt -u http://<url>/FUZZ -recursion -recursion-depth 1 -e .php -v -ic
 ```
 ```bash
+ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt -u http://<url>?FUZZ=key -fs 123
+```
+```bash
 gobuster dir -u http://<url> -w /usr/share/wordlists/dirb/common.txt -t 70
 ```
 ```shell
