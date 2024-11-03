@@ -9,6 +9,10 @@
 ```bash
 sqlmap ... --batch
 ```
+### Fingerprint
+```bash
+sqlmap ... --current-user --banner --current-db --is-dba
+```
 ### Send traffic through proxy
 ```bash
 sqlmap ... --proxy http://127.0.0.1:8080
@@ -24,6 +28,11 @@ sqlmap ... --parse-errors
 ```
 #### Verbose output
 ```bash
+# No info logs
+sqlmap ... -v 0
+```
+```bash
+# All payloads
 sqlmap ... -v 3
 ```
 ### Tuning
