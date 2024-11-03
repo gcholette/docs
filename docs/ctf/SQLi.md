@@ -24,7 +24,17 @@ sqlmap ... --parse-errors
 ```
 #### Verbose output
 ```bash
-sqlmap ... -v 6
+sqlmap ... -v 3
+```
+### Tuning
+```bash
+sqlmap ... --level=5 --risk=3
+```
+```bash
+sqlmap ... --union-cols=6 --union-char='A'
+```
+```bash
+sqlmap ... --prefix="\`)" --suffix="-- +" 
 ```
 
 ## Mysql
