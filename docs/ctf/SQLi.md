@@ -13,17 +13,33 @@ sqlmap ... --batch
 ```bash
 sqlmap ... --current-user --banner --current-db --is-dba
 ```
-### Enum dbs
+#### Enum everything at once
+```bash
+sqlmap ... --all --batch -v 0
+```
+#### Enum schema
+```bash
+sqlmap ... --schema
+```
+#### Enum dbs
 ```bash
 sqlmap ... --dbs
 ```
-### Enum tables
+#### Enum tables
 ```bash
 sqlmap ... -D dbname --tables
 ```
-### Enum columns
+#### Enum columns
 ```bash
 sqlmap ... -D dbname -T users --columns
+```
+#### Search table by string
+```bash
+sqlmap ... --search -T something
+```
+#### Search column by string
+```
+sqlmap ... --search -C something
 ```
 ### Dump everything
 ```bash
