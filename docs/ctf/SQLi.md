@@ -1,6 +1,31 @@
 # SQLi
  - [payload all the things](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection)
 
+## SQLMap
+### Tips
+- Copy the request as cURL in the devtools and change curl to sqlmap
+- Save burp requests to text files and load them in sqlmap with `sqlmap -r request.txt`
+### Don't ask for user input
+```bash
+sqlmap ... --batch
+```
+### Send traffic through proxy
+```bash
+sqlmap ... --proxy http://127.0.0.1:8080
+```
+### Save traffic to file
+```bash
+sqlmap ... -t ./out.txt
+```
+### Verbosity
+#### Show errors
+```bash
+sqlmap ... --parse-errors
+```
+#### Verbose output
+```bash
+sqlmap ... -v 6
+```
 
 ## Mysql
 - [payload all the things mysql](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/MySQL%20Injection.md)
