@@ -3,6 +3,7 @@ title: File upload attacks
 ---
 
 # File upload attacks
+- [payloadallthethings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Upload%20Insecure%20Files/README.md)
 
 ## Tips
 - Fuzz file extensions for whitelisted and blacklisted, try uncommon extensions
