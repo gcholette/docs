@@ -1,5 +1,5 @@
 ---
-title: Web Recon
+title: Recon
 ---
 
 # Web Recon
@@ -54,7 +54,7 @@ cewl http://<url> -w cewl-generated-wordlist.txt
 
 ## Fingerprinting
 ```bash
-curl -I https://inlanefreight.com
+curl -I https://<host>
 ```
 ```bash
 nikto -h https://www.<host> -Tuning b
