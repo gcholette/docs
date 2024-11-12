@@ -3,6 +3,11 @@
 ## Resources
 - [Hacktricks SSTI](https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection)
 
+## Detection
+```
+${{<%[%'"}}%\.
+```
+
 ## Mako
 ```python
 ${4+4}
