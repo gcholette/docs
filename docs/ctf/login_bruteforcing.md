@@ -4,16 +4,23 @@
 - [CUPP](https://github.com/Mebus/cupp)
 - [Username anarchy](https://github.com/urbanadventurer/username-anarchy)
 
+## Basic seq
+```
+seq -w 0 9999 > numbers.txt
+```
 
 ## Rule filtering
 ```
 grep -E '^.{6,}$' wordlist.txt | grep -E '[A-Z]' | grep -E '[a-z]' | grep -E '[0-9]' | grep -E '([!@#$%^&*].*){2,}' > wordlist-filtered.txt
 ```
 
-## Hydra
+## Bruteforcing
 - [Hydra Kali page](https://www.kali.org/tools/hydra/)
 
 ### POST web form
+```bash
+ffuf -w ./wordlist.txt -u <url> -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "username=user&password=FUZZ" -fr "Invalid credentials"
+```
 ```bash
 hydra -l admin -P passwords.txt <host> http-post-form "/login:username=^USER^&password=^PASS^:F=Invalid"
 ```
