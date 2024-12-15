@@ -11,6 +11,9 @@
  - Add ~2048 times the `/.` string at the end of the URL
     -  `echo -n "../../../etc/passwd/" && for i in {1..2048}; do echo -n "./"; done`
  - Try to inject null bytes `%00` to bypass extension checking (for old frameworks)
+ - `/proc/<n>/root` is loopable like `/proc/18/root/proc/18/root/proc/18/root/etc/passwd`
+ - If the url is built from query string params, try specifying multiple times the same param.
+ - Mess with `%0D` and `%0A`
   
 If LFI works but is read only, look for credentials like ssh keys.
 
