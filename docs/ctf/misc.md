@@ -26,11 +26,15 @@ Basic file read
 ### Bypass blacklist/whitelist
 Js script to obfuscate LaTeX as hex values
 ```js
+// leetLatexObfuscator.js
 const fs = require('fs')
 const args = process.argv.slice(2);
 const scriptContent = fs.readFileSync(args[0]).toString()
 const parsed = scriptContent.split('\n').map(line => line.split('').map(char =>  "^^" + Number(char.charCodeAt(0)).toString(16)).join('')).join("\n")
 fs.writeFileSync(args[1], parsed)
+```
+```bash
+node leetLatexObfuscator.js input.txt output.txt
 ```
 
 ## Dotnet
