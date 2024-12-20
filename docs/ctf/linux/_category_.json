@@ -1,5 +1,6 @@
 {
-  "label": "Privesc",
+  "label": "Linux",
+  "position": 1,
   "link": {
     "type": "generated-index"
   }

