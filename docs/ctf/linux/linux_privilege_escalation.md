@@ -1,5 +1,5 @@
 ---
-title: Linux
+title: Linux Privilege Escalation
 ---
 
 # Linux Privilege Escalation

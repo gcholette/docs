@@ -1,5 +1,5 @@
 ---
-title: Windows
+title: Windows Privilege Escalation
 ---
 
 # Windows Privilege Escalation
