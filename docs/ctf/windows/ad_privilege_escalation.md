@@ -1,5 +1,5 @@
 ---
-title: Active Directory
+title: AD Privilege Escalation
 ---
 
 # Active Directory Privilege Escalation
