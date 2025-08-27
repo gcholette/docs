@@ -3,3 +3,7 @@ Allow: /
 
 Sitemap: https://docs.gcholette.com/sitemap.xml
 
+Disallow: /blog/archive/
+Disallow: /blog/authors/
+Disallow: /blog/tags/
+Disallow: /htbstats/
